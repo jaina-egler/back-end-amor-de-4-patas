@@ -19,12 +19,11 @@ servers:
     description: Api de produção do amor de 4 patas
   - url: https://homologacao.swagger.io/api/v3
     description: Api de homologação do amor de 4 patas
-tags:
-  - name: tag
-    description: Teste de tag
 paths:
   /animais:
       get:
+        tags:
+          - Operações com animais
         summary: Recupera todos os animais
         responses:
           '200':
@@ -34,6 +33,8 @@ paths:
                 schema: 
                   $ref: '#/components/schemas/animais'
       post:
+        tags:
+          - Operações com animais
         summary: Criar um novo animal
         requestBody:
           description: Create a new pet in the store
@@ -59,6 +60,8 @@ paths:
               application/json:
                 example: Conflict
       put:
+        tags:
+          - Operações com animais
         summary: Editar um animal
         requestBody:
           description: Create a new pet in the store
@@ -85,6 +88,8 @@ paths:
                 example: Conflict
   /animais/{id}:
       get:
+        tags:
+          - Operações com animais
         summary: Recupera os dados específicos de 1 animal
         parameters:
           - name: id
