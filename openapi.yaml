@@ -58,6 +58,31 @@ paths:
             content:
               application/json:
                 example: Conflict
+      put:
+        summary: Editar um animal
+        requestBody:
+          description: Create a new pet in the store
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/animais_post'
+        responses:
+          "201":
+            description: Sucesso!
+            content:
+              application/json:
+                schema:
+                  $ref: "#/components/schemas/animais_id"
+          "404":
+            description: Animal não encontrado!
+            content:
+              application/json:
+                example: Not found
+          "409":
+            description: Animal já existe!
+            content:
+              application/json:
+                example: Conflict
   /animais/{id}:
       get:
         summary: Recupera os dados específicos de 1 animal
