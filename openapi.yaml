@@ -1,0 +1,169 @@
+openapi: 3.0.3
+info:
+  title: API4Patas
+  description: API para gerenciar o site do amor de 4 patas
+  version: 0.0.1
+  termsOfService: http://localhost:3030
+  contact:
+    name: Jaina
+    email: jainadadycardoso@gmail.com
+    url: fslab.dev
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+externalDocs:
+    description: Documentação detalhada
+    url: https://urldadocumentação
+servers:
+  - url: https://producao.swagger.io/api/v3
+    description: Api de produção do amor de 4 patas
+  - url: https://homologacao.swagger.io/api/v3
+    description: Api de homologação do amor de 4 patas
+tags:
+  - name: tag
+    description: Teste de tag
+paths:
+  /animais:
+      get:
+        summary: Recupera todos os animais
+        responses:
+          '200':
+            description: Sucesso!
+            content: 
+              application/json:
+                schema: 
+                  $ref: '#/components/schemas/animais'
+      post:
+        summary: Criar um novo animal
+        requestBody:
+          description: Create a new pet in the store
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/animais_post'
+        responses:
+          "201":
+            description: Sucesso!
+            content:
+              application/json:
+                schema:
+                  $ref: "#/components/schemas/animais_id"
+          "404":
+            description: Animal não encontrado!
+            content:
+              application/json:
+                example: Not found
+          "409":
+            description: Animal já existe!
+            content:
+              application/json:
+                example: Conflict
+  /animais/{id}:
+      get:
+        summary: Recupera os dados específicos de 1 animal
+        parameters:
+          - name: id
+            in: path
+            description: ID of pet to return
+            required: true
+            schema:
+              type: string
+              format: string
+        responses:
+          '200':
+            description: Sucesso!
+            content: 
+              application/json:
+                schema: 
+                  $ref: '#/components/schemas/animais_id'
+components:
+  schemas:
+    animais:
+      type: object
+      properties:
+        id:
+          type: string
+          format: string
+          example: ab23432fd34
+        nome:
+          type: string
+          format: string
+          example: Rex
+        especie:
+          type: string
+          format: string
+          example: Cachorro
+        genero:
+          type: string
+          format: string
+          example: Macho
+        idade:
+          type: string
+          format: string
+          example: 11 meses
+    animais_id:
+      type: object
+      properties:
+        id:
+          type: string
+          format: string
+          example: ab23432fd34
+        nome:
+          type: string
+          format: string
+          example: Rex
+        especie:
+          type: string
+          format: string
+          example: Cachorro
+        genero:
+          type: string
+          format: string
+          example: Macho
+        idade:
+          type: string
+          format: string
+          example: 11 meses
+        vacinas:
+          type: string
+          format: string
+          example: Raiva - Pfizer
+        medicamentos:
+          type: string
+          format: string
+          example: Dipirona
+        Histórico:
+          type: string
+          format: string
+          example: Animal de resgate
+    animais_post:
+      type: object
+      properties:
+        nome:
+          type: string
+          format: string
+          example: Rex
+        especie:
+          type: string
+          format: string
+          example: Cachorro
+        genero:
+          type: string
+          format: string
+          example: Macho
+        idade:
+          type: string
+          format: string
+          example: 11 meses
+        vacinas:
+          type: string
+          format: string
+          example: Raiva - Pfizer
+        medicamentos:
+          type: string
+          format: string
+          example: Dipirona
+        Histórico:
+          type: string
+          format: string
+          example: Animal de resgate
